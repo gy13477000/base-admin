@@ -65,6 +65,13 @@ public class SysUserMenuServiceImpl extends CommonServiceImpl<SysUserMenuVo, Sys
         SysUserMenuVo sysUserMenuVo = new SysUserMenuVo();
         sysUserMenuVo.setUserId(userId);
         list(sysUserMenuVo).getData().forEach((userMenuVo)->{
+            // 及子菜单对应的用户菜单表关联信息
+            SysUserMenuVo sysUserMenuVo = new SysUserMenuVo();
+            sysUserMenuVo.setMenuId(menuVo.getMenuId());
+            sysUserMenuService.list(sysUserMenuVo).getData().forEach((vo) -> {
+                sysUserMenuService.delete(vo.getUserMenuId());
+            });
+
             delete(userMenuVo.getUserMenuId());
         });
 
