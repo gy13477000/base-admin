@@ -37,6 +37,7 @@ import java.util.List;
 
 @EnableAsync//开启异步调用
 @SpringBootApplication
+@EnableTransactionManagement
 public class BaseAdminApplication {
 
     public static void main(String[] args) {
